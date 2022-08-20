@@ -17,6 +17,7 @@ use RachidLaasri\LaravelInstaller\Helpers\PermissionsChecker;
 use RachidLaasri\LaravelInstaller\Helpers\RequirementsChecker;
 use RachidLaasri\LaravelInstaller\Notifications\InstallationSuccessfulNotification;
 use Validator;
+use Symfony\Component\Mailer\Exception\TransportException;
 
 class WelcomeController extends Controller
 {

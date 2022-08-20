@@ -156,7 +156,9 @@ class WelcomeController extends Controller
 
         event(new LaravelInstallerFinished);
 
-        $admin->notify(new InstallationSuccessfulNotification);
+        try {
+            $admin->notify(new InstallationSuccessfulNotification);
+        } catch (TransportException $e) {}
 
         return view('installer::finished', compact('admin'));
     }

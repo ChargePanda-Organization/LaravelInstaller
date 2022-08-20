@@ -17,6 +17,7 @@ use RachidLaasri\LaravelInstaller\Helpers\PermissionsChecker;
 use RachidLaasri\LaravelInstaller\Helpers\RequirementsChecker;
 use RachidLaasri\LaravelInstaller\Notifications\InstallationSuccessfulNotification;
 use Validator;
+use Symfony\Component\Mailer\Exception\TransportException;
 
 class WelcomeController extends Controller
 {
@@ -156,7 +157,9 @@ class WelcomeController extends Controller
 
         event(new LaravelInstallerFinished);
 
-        $admin->notify(new InstallationSuccessfulNotification);
+        try {
+            $admin->notify(new InstallationSuccessfulNotification);
+        } catch (TransportException $e) {}
 
         return view('installer::finished', compact('admin'));
     }

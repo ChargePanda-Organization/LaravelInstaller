@@ -112,9 +112,9 @@ class EnvironmentManager
     {
         $envFileData =
             'APP_NAME=\'' . $request->app_name . "'\n" .
-            'APP_ENV=' . config('app.env', 'production') . "\n" .
+            'APP_ENV=production' . "\n" .
             'APP_KEY=base64:' . base64_encode(Str::random(32)) . "\n" .
-            'APP_DEBUG=' . config('app.debug', false) . "\n" .
+            'APP_DEBUG=false' . "\n" .
             'APP_URL=' . $request->app_url . "\n\n" .
 
             'LOG_CHANNEL=stack' . "\n" .
@@ -142,12 +142,12 @@ REDIS_HOST=127.0.0.1
 REDIS_PASSWORD=null
 REDIS_PORT=6379
 
-MAIL_DRIVER=sendmail
-#MAIL_HOST=mailhog
-#MAIL_PORT=1025
-#MAIL_USERNAME=null
-#MAIL_PASSWORD=null
-#MAIL_ENCRYPTION=null
+MAIL_DRIVER=smtp
+MAIL_HOST=mailhog
+MAIL_PORT=1025
+MAIL_USERNAME=null
+MAIL_PASSWORD=null
+MAIL_ENCRYPTION=null
 MAIL_FROM_ADDRESS="' . $request->admin_email . '"
 MAIL_FROM_NAME="${APP_NAME}"
 

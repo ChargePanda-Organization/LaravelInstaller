@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
 use RachidLaasri\LaravelInstaller\Events\EnvironmentSaved;
 use RachidLaasri\LaravelInstaller\Events\LaravelInstallerFinished;
@@ -117,7 +118,14 @@ class WelcomeController extends Controller
         try {
             DB::unprepared(file_get_contents(database_path('schema/mysql-schema.dump')));
 
+            $countries = Storage::disk('local')->get('countries.sql');
+            DB::unprepared($countries);
+
+            $states = Storage::disk('local')->get('states.sql');
+            DB::unprepared($states);
+
             Artisan::call('migrate', ["--force" => true]);
+
         } catch (\Exception $e) {
             throw ValidationException::withMessages([
                 'message' => $e->getMessage()

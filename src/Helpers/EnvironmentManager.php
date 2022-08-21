@@ -117,7 +117,7 @@ class EnvironmentManager
             'APP_DEBUG=false' . "\n" .
             'APP_URL=' . $request->app_url . "\n\n" .
 
-            'LOG_CHANNEL=stack' . "\n" .
+            'LOG_CHANNEL=daily' . "\n" .
             'LOG_DEPRECATIONS_CHANNEL=null' . "\n" .
             'LOG_LEVEL=debug' . "\n\n" .
 

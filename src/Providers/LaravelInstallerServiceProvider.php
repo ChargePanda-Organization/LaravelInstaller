@@ -2,6 +2,7 @@
 
 namespace RachidLaasri\LaravelInstaller\Providers;
 
+use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\ServiceProvider;
@@ -10,7 +11,7 @@ use RachidLaasri\LaravelInstaller\Helpers\EnvironmentManager;
 use RachidLaasri\LaravelInstaller\Middleware\canInstall;
 use RachidLaasri\LaravelInstaller\Middleware\canUpdate;
 
-class LaravelInstallerServiceProvider extends ServiceProvider
+class LaravelInstallerServiceProvider extends ServiceProvider implements DeferrableProvider
 {
     /**
      * Bootstrap the application events.
@@ -21,7 +22,7 @@ class LaravelInstallerServiceProvider extends ServiceProvider
     {
         $this->loadRoutesFrom(__DIR__ . '/../Routes/web.php');
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'installer');
-        $this->loadTranslationsFrom(__DIR__ . '/../lang', 'installer');
+        $this->loadTranslationsFrom(__DIR__ . '/../Lang', 'installer');
 
         if ($this->app->runningInConsole()) {
             $this->commands([
@@ -35,8 +36,8 @@ class LaravelInstallerServiceProvider extends ServiceProvider
 
             $router->middlewareGroup('install', [CanInstall::class]);
             $router->middlewareGroup('update', [CanUpdate::class]);
-            $this->publishFiles();
         }
+        $this->publishFiles();
     }
 
     /**

@@ -2,16 +2,14 @@
 
 namespace RachidLaasri\LaravelInstaller\Providers;
 
-use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Routing\Router;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\ServiceProvider;
 use RachidLaasri\LaravelInstaller\Commands\Uninstall;
 use RachidLaasri\LaravelInstaller\Helpers\EnvironmentManager;
 use RachidLaasri\LaravelInstaller\Middleware\canInstall;
 use RachidLaasri\LaravelInstaller\Middleware\canUpdate;
 
-class LaravelInstallerServiceProvider extends ServiceProvider implements DeferrableProvider
+class LaravelInstallerServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application events.

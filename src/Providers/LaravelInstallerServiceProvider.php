@@ -12,6 +12,16 @@ use RachidLaasri\LaravelInstaller\Middleware\canUpdate;
 class LaravelInstallerServiceProvider extends ServiceProvider
 {
     /**
+     * Register the service provider.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        $this->publishFiles();
+    }
+
+    /**
      * Bootstrap the application events.
      *
      * @param $void
@@ -35,7 +45,6 @@ class LaravelInstallerServiceProvider extends ServiceProvider
             $router->middlewareGroup('install', [CanInstall::class]);
             $router->middlewareGroup('update', [CanUpdate::class]);
         }
-        $this->publishFiles();
     }
 
     /**

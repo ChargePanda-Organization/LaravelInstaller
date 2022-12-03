@@ -60,7 +60,15 @@ class canInstall
     public function alreadyInstalled()
     {
         try {
-            return Schema::hasTable('settings');
+            if (Schema::hasTable('settings')) {
+                if (session()->has('installation-mode')) {
+                    return false;
+                }
+                return true;
+            } else {
+                session()->set('installation-mode', true);
+                return false;
+            }
         } catch (QueryException $exception) {
             return false;
         }

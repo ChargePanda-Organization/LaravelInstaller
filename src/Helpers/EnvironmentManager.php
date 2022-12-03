@@ -181,7 +181,7 @@ VITE_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"
 
         try {
             // sub directory
-            $htaccess = file_get_contents(base_path('public\.htaccess'));
+            $htaccess = file_get_contents(public_path('.htaccess'));
 
             $request_uri = \request()->getRequestUri();
 
@@ -195,7 +195,7 @@ VITE_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"
                 $htaccess
             );
 
-            file_put_contents(base_path('public\.htaccess'), $htaccess);
+            file_put_contents(public_path('.htaccess'), $htaccess);
         } catch (Exception $e) {
             throw ValidationException::withMessages([
                 'message' => trans('installer::installer_messages.environment.htaccess_errors')

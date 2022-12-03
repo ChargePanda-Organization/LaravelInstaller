@@ -60,15 +60,10 @@ class canInstall
     public function alreadyInstalled()
     {
         try {
-            if (Schema::hasTable('settings')) {
-                if (session()->has('installation-mode')) {
-                    return false;
-                }
-                return true;
-            } else {
-                session()->set('installation-mode', true);
+            if (request()->routeIs('LaravelInstaller::final')) {
                 return false;
             }
+            return Schema::hasTable('settings');
         } catch (QueryException $exception) {
             return false;
         }

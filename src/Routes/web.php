@@ -55,12 +55,6 @@ Route::group(['prefix' => 'install','as' => 'LaravelInstaller::','namespace' => 
         'as' => 'final',
         'uses' => 'FinalController@finish'
     ]);
-
-    Route::get('final', [
-        'as' => 'final',
-        'uses' => 'FinalController@finish'
-    ]);
-
 });
 
 Route::group(['prefix' => 'update','as' => 'LaravelUpdater::','namespace' => 'RachidLaasri\LaravelInstaller\Controllers','middleware' => 'web'],function() {

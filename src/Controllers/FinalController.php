@@ -24,8 +24,6 @@ class FinalController extends Controller
         
         event(new LaravelInstallerFinished);
 
-        session()->forget('installation-mode');
-
         return view('installer::finished', compact('finalMessages', 'finalStatusMessage', 'finalEnvFile'));
     }
 }
